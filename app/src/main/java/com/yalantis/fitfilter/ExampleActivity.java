@@ -1,5 +1,6 @@
 package com.yalantis.fitfilter;
 
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -26,6 +27,7 @@ public class ExampleActivity extends AppCompatActivity implements FilterListener
     private RecyclerView mRecyclerView;
 
     private int[] mColors;
+    private TypedArray iconsID;
     private String[] mTitles;
     private List<Question> mAllQuestions;
     private Filter<Tag> mFilter;
@@ -43,6 +45,7 @@ public class ExampleActivity extends AppCompatActivity implements FilterListener
         Fresco.initialize(this, config);
 
         mColors = getResources().getIntArray(R.array.colors);
+        iconsID = getResources().obtainTypedArray(R.array.icons);
         mTitles = getResources().getStringArray(R.array.job_titles);
 
         mFilter = (Filter<Tag>) findViewById(R.id.filter);
@@ -88,7 +91,7 @@ public class ExampleActivity extends AppCompatActivity implements FilterListener
         List<Tag> tags = new ArrayList<>();
 
         for (int i = 0; i < mTitles.length; ++i) {
-            tags.add(new Tag(mTitles[i], mColors[i], R.drawable.ic_alarm));
+            tags.add(new Tag(mTitles[i], mColors[i], 0));
         }
 
         return tags;
@@ -107,32 +110,32 @@ public class ExampleActivity extends AppCompatActivity implements FilterListener
             add(new Question("Carol Bell", "Graphic Designer",
                     "http://kingofwallpapers.com/girl/girl-011.jpg", "Nov 20, 6:12 PM",
                     "What is the first step to transform an idea into an actual project?", new ArrayList<Tag>() {{
-                add(new Tag(mTitles[2], mColors[2], R.drawable.ic_alarm));
-                add(new Tag(mTitles[4], mColors[4], R.drawable.ic_alarm));
+                add(new Tag(mTitles[2], mColors[2], 0));
+                add(new Tag(mTitles[4], mColors[4], 0));
             }}));
             add(new Question("Melissa Morales", "Project Manager",
                     "http://weknowyourdreams.com/images/girl/girl-03.jpg", "Nov 20, 3:48 AM",
                     "What is your biggest frustration with taking your business/career (in a corporate) to the next level?", new ArrayList<Tag>() {{
-                add(new Tag(mTitles[1], mColors[1],R.drawable.ic_alarm));
-                add(new Tag(mTitles[5], mColors[5],R.drawable.ic_alarm));
+                add(new Tag(mTitles[1], mColors[1], 0));
+                add(new Tag(mTitles[5], mColors[5], 0));
             }}));
             add(new Question("Rochelle Yingst", "iOS Developer",
                     "http://www.viraldoza.com/wp-content/uploads/2014/03/8876509-lily-pretty-girl.jpg", "Nov 20, 6:12 PM",
                     "What is the first step to transform an idea into an actual project?", new ArrayList<Tag>() {{
-                add(new Tag(mTitles[7], mColors[7],R.drawable.ic_alarm));
-                add(new Tag(mTitles[8], mColors[8],R.drawable.ic_alarm));
+                add(new Tag(mTitles[7], mColors[7],0));
+                add(new Tag(mTitles[8], mColors[8],0));
             }}));
             add(new Question("Lacey Barbara", "QA Engineer",
                     "http://kingofwallpapers.com/girl/girl-019.jpg", "Nov 20, 6:12 PM",
                     "What is the first step to transform an idea into an actual project?", new ArrayList<Tag>() {{
-                add(new Tag(mTitles[3], mColors[3],R.drawable.ic_alarm));
-                add(new Tag(mTitles[9], mColors[9],R.drawable.ic_alarm));
+                add(new Tag(mTitles[3], mColors[3], 0));
+                add(new Tag(mTitles[9], mColors[9], 0));
             }}));
             add(new Question("Teena Allain", "Android Developer",
                     "http://tribzap2it.files.wordpress.com/2014/09/hannah-simone-new-girl-season-4-cece.jpg", "Nov 20, 6:12 PM",
                     "What is the first step to transform an idea into an actual project?", new ArrayList<Tag>() {{
-                add(new Tag(mTitles[1], mColors[1],R.drawable.ic_alarm));
-                add(new Tag(mTitles[6], mColors[6],R.drawable.ic_alarm));
+                add(new Tag(mTitles[1], mColors[1],0));
+                add(new Tag(mTitles[6], mColors[6],0));
             }}));
         }};
     }
@@ -185,11 +188,17 @@ public class ExampleActivity extends AppCompatActivity implements FilterListener
 
             filterItem.setStrokeColor(mColors[0]);
             filterItem.setTextColor(mColors[0]);
+
             filterItem.setCornerRadius(14);
             filterItem.setCheckedTextColor(ContextCompat.getColor(ExampleActivity.this, android.R.color.white));
+
             filterItem.setColor(ContextCompat.getColor(ExampleActivity.this, android.R.color.white));
             filterItem.setCheckedColor(mColors[position]);
             filterItem.setText(item.getText());
+
+            int icon = iconsID.getResourceId(position,0);
+            filterItem.setFilterIcon(icon);
+
             filterItem.deselect();
 
             return filterItem;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="icons">
+        <item>@drawable/ic_alarm</item>
+        <item>@drawable/ic_arrow</item>
+        <item>@drawable/ic_chat</item>
+        <item>@drawable/ic_heart</item>
+        <item>@drawable/ic_more</item>
+        <item>@drawable/ic_search</item>
+        <item>@drawable/ic_arrow</item>
+        <item>@drawable/ic_arrow</item>
+        <item>@drawable/ic_arrow</item>
+        <item>@drawable/ic_arrow</item>
+        <item>@drawable/ic_arrow</item>
+    </integer-array>
+
+</resources>

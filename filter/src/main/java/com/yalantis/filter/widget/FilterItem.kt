@@ -31,7 +31,6 @@ class FilterItem : FrameLayout, Serializable {
     var startX: Float = 0f
     var startY: Float = 0f
     @ColorInt var filterIconTint: Int = android.R.color.black
-    @DrawableRes var cancelIcon: Int = R.drawable.ic_cancel
     @DrawableRes var filterIcon: Int = R.drawable.ic_arrow
 
     @ColorInt var color: Int? = null
